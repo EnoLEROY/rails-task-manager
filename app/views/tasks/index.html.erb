@@ -1,0 +1,25 @@
+<div class="container p-2 col-6">
+  <h2 class='my-5'>My tasks</h2>
+
+  <div class="mb-3">
+    <% @tasks.each do |task| %>
+      <div class="d-flex justify-content-between w-100 align-item-center p-2  border rounded border-primary">
+        <%= link_to task_path(task) do %>
+          <div class='flex-fill'>
+            <input type="checkbox"  class='mx-2' <%= 'checked' if task.completed == true%>>
+            <%= task.title %>
+          </div>
+        <% end %>
+        <%= link_to task_delete_path(task), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+          <i class="fa-solid fa-trash mx-2"></i>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="text-center">
+    <%= link_to tasks_new_path do %>
+      <button class="btn btn-primary">Create a new task</button>
+    <% end %>
+  </div>
+</div>
